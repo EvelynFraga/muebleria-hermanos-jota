@@ -2,30 +2,169 @@ const productos = [
   {
     id: 1,
     nombre: "Aparador Uspallata",
-    descripcion: "Aparador de líneas contemporáneas para living o comedor.",
+    descripcion:
+      "Aparador de seis puertas fabricado en nogal sostenible con tiradores metálicos en acabado latón. Su silueta minimalista realza el veteado natural de la madera, creando una pieza que combina funcionalidad y elegancia atemporal para espacios contemporáneos.",
     imagen: "imagenes/Aparador Uspallata.png",
+    precio: 1250000,
+    detalles: {
+      medidas: "180 × 45 × 75 cm",
+      materiales: "Nogal macizo FSC®, herrajes de latón",
+      acabado: "Aceite natural ecológico",
+      peso: "68 kg",
+      capacidad: "6 compartimentos interiores",
+    },
   },
   {
     id: 2,
-    nombre: "Sofá Patagonia",
-    descripcion: "Sofá de tres cuerpos para el living.",
-    imagen: "imagenes/Sofá Patagonia.png",
+    nombre: "Biblioteca Recoleta",
+    descripcion:
+      "Sistema modular de estantes abierto que combina estructura de acero Sage Green y repisas en roble claro. Perfecta para colecciones y objetos de diseño, su diseño versátil se adapta a cualquier espacio contemporáneo con elegancia funcional.",
+    imagen: "imagenes/Biblioteca Recoleta.png",
+    precio: 980000,
+    detalles: {
+      medidas: "100 × 35 × 200 cm",
+      materiales: "Estructura de acero, estantes de roble",
+      acabado: "Laca mate ecológica",
+      capacidad: "45 kg por estante",
+      modulares: "5 estantes ajustables",
+    },
   },
   {
     id: 3,
-    nombre: "Mesa Comedor Pampa",
-    descripcion: "Mesa de comedor de madera para reuniones en casa.",
-    imagen: "imagenes/Mesa Comedor Pampa.png",
+    nombre: "Butaca Mendoza",
+    descripcion:
+      "Butaca tapizada en bouclé Dusty Rose con base de madera de guatambú. El respaldo curvo abraza el cuerpo y ofrece máximo confort, mientras que su diseño orgánico aporta calidez y sofisticación a cualquier ambiente contemporáneo.",
+    imagen: "imagenes/Butaca Mendoza.png",
+    precio: 620000,
+    detalles: {
+      medidas: "80 × 75 × 85 cm",
+      materiales: "Guatambú macizo, tela bouclé",
+      acabado: "Cera vegetal, tapizado premium",
+      tapizado: "Repelente al agua y manchas",
+      confort: "Espuma alta densidad",
+    },
   },
   {
     id: 4,
     nombre: "Sillón Copacabana",
-    descripcion: "Sillón de apoyo para living o rincón de lectura.",
+    descripcion:
+      "Sillón lounge en cuero cognac con base giratoria en acero Burnt Sienna. Inspirado en la estética brasilera moderna de los 60, combina comodidad excepcional con un diseño icónico que trasciende tendencias y épocas.",
     imagen: "imagenes/Sillón Copacabana.png",
+    precio: 890000,
+    detalles: {
+      medidas: "90 × 85 × 95 cm",
+      materiales: "Cuero curtido vegetal, acero pintado",
+      acabado: "Cuero anilina premium",
+      rotacion: "360° silenciosa y suave",
+      garantia: "10 años en estructura",
+    },
+  },
+  {
+    id: 5,
+    nombre: "Mesa de Centro Araucaria",
+    descripcion:
+      "Mesa de centro con sobre circular de mármol Patagonia y base de tres patas en madera de nogal. Su diseño minimalista se convierte en el punto focal perfecto para cualquier sala de estar contemporánea, combinando la frialdad del mármol con la calidez de la madera.",
+    imagen: "imagenes/Mesa de Centro Araucaria.png",
+    precio: 540000,
+    detalles: {
+      medidas: "90 × 90 × 45 cm",
+      materiales: "Sobre de mármol Patagonia, patas de nogal",
+      acabado: "Mármol pulido, aceite natural en madera",
+      peso: "42 kg",
+      cargaMaxima: "25 kg distribuidos",
+    },
+  },
+  {
+    id: 6,
+    nombre: "Mesa de Noche Aconcagua",
+    descripcion:
+      "Mesa de noche con cajón oculto y repisa inferior en roble certificado FSC®. Su diseño limpio y funcional permite convivir con diferentes estilos de dormitorio, ofreciendo almacenamiento discreto y elegante para objetos personales.",
+    imagen: "imagenes/Mesa de Noche Aconcagua.png",
+    precio: 380000,
+    detalles: {
+      medidas: "45 × 35 × 60 cm",
+      materiales: "Roble macizo FSC®, herrajes soft-close",
+      acabado: "Barniz mate de poliuretano",
+      almacenamiento: "1 cajón + repisa inferior",
+      caracteristicas: "Cajón con cierre suave",
+    },
+  },
+  {
+    id: 7,
+    nombre: "Sofá Patagonia",
+    descripcion:
+      "Sofá de tres cuerpos tapizado en lino Warm Alabaster con patas cónicas de madera. Los cojines combinan espuma de alta resiliencia con plumón reciclado, ofreciendo comodidad duradera y sostenible para el hogar moderno.",
+    imagen: "imagenes/Sofá Patagonia.png",
+    precio: 1450000,
+    detalles: {
+      medidas: "220 × 90 × 80 cm",
+      estructura: "Madera de eucalipto certificada FSC®",
+      tapizado: "Lino 100% natural premium",
+      relleno: "Espuma HR + plumón reciclado",
+      sostenibilidad: "Materiales 100% reciclables",
+    },
+  },
+  {
+    id: 8,
+    nombre: "Mesa Comedor Pampa",
+    descripcion:
+      "Mesa extensible de roble macizo con tablero biselado y sistema de apertura suave. Su diseño robusto y elegante se adapta perfectamente a reuniones íntimas o grandes celebraciones familiares, extendiéndose de 6 a 10 comensales.",
+    imagen: "imagenes/Mesa Comedor Pampa.png",
+    precio: 1180000,
+    detalles: {
+      medidas: "160-240 × 90 × 75 cm",
+      materiales: "Roble macizo FSC®, mecanismo alemán",
+      acabado: "Aceite-cera natural",
+      capacidad: "6-10 comensales",
+      extension: "Sistema de mariposa central",
+    },
+  },
+  {
+    id: 9,
+    nombre: "Sillas Córdoba",
+    descripcion:
+      "Set de cuatro sillas apilables en contrachapado moldeado de nogal y estructura tubular pintada en Sage Green. Su diseño ergonómico y materiales de calidad garantizan comodidad y durabilidad en el uso diario, perfectas para comedores contemporáneos.",
+    imagen: "imagenes/Sillas Córdoba.png",
+    precio: 720000,
+    detalles: {
+      medidas: "45 × 52 × 80 cm (cada una)",
+      materiales: "Contrachapado nogal, tubo de acero",
+      acabado: "Laca mate, pintura epoxi",
+      apilables: "Hasta 6 sillas",
+      incluye: "Set de 4 sillas",
+    },
+  },
+  {
+    id: 10,
+    nombre: "Escritorio Costa",
+    descripcion:
+      "Escritorio compacto con cajón organizado y tapa pasacables integrada en bambú laminado. Ideal para espacios de trabajo en casa, combina funcionalidad moderna con estética minimalista y sostenible, perfecto para el trabajo remoto.",
+    imagen: "imagenes/Escritorio Costa.png",
+    precio: 680000,
+    detalles: {
+      medidas: "120 × 60 × 75 cm",
+      materiales: "Bambú laminado, herrajes ocultos",
+      acabado: "Laca mate resistente",
+      almacenamiento: "1 cajón con organizador",
+      cables: "Pasacables integrado",
+    },
+  },
+  {
+    id: 11,
+    nombre: "Silla de Trabajo Belgrano",
+    descripcion:
+      "Silla ergonómica regulable en altura con respaldo de malla transpirable y asiento tapizado en tejido reciclado. Diseñada para largas jornadas de trabajo con máximo confort y apoyo lumbar, ideal para oficinas en casa y espacios de coworking.",
+    imagen: "imagenes/Silla de Trabajo Belgrano.png",
+    precio: 590000,
+    detalles: {
+      medidas: "60 × 60 × 90-100 cm",
+      materiales: "Malla técnica, tejido reciclado",
+      acabado: "Base cromada, tapizado premium",
+      regulacion: "Altura + inclinación respaldo",
+      certificacion: "Ergonomía europea EN 1335",
+    },
   },
 ];
-
-const contenedorProductos = document.querySelector("#contenedor-productos");
 
 function esperar(ms) {
   return new Promise(function (resolve) {
@@ -36,9 +175,20 @@ function esperar(ms) {
 async function cargarProductos() {
   await esperar(1000);
 
-  const contenedorProductos = document.querySelector("#contenedor-productos");
+  const contenedorProductos =
+    document.querySelector("#contenedor-productos") ||
+    document.querySelector("#catalogo-productos");
 
-  productos.forEach(function (producto) {
+  if (!contenedorProductos) {
+    return;
+  }
+
+  const productosAMostrar =
+    contenedorProductos.id === "contenedor-productos"
+      ? productos.slice(0, 4)
+      : productos;
+
+  productosAMostrar.forEach(function (producto) {
     const articulo = document.createElement("article");
     articulo.className = "tarjeta-mueble";
 
