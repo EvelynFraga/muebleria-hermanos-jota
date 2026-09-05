@@ -27,33 +27,47 @@ const productos = [
 
 const contenedorProductos = document.querySelector("#contenedor-productos");
 
-productos.forEach(function (producto) {
-  const articulo = document.createElement("article");
-  articulo.className = "tarjeta-mueble";
+function esperar(ms) {
+  return new Promise(function (resolve) {
+    setTimeout(resolve, ms);
+  });
+}
 
-  const figura = document.createElement("figure");
+async function cargarProductos() {
+  await esperar(1000);
 
-  const imagen = document.createElement("img");
-  imagen.src = producto.imagen;
-  imagen.alt = producto.nombre;
-  imagen.width = 400;
-  imagen.height = 400;
+  const contenedorProductos = document.querySelector("#contenedor-productos");
 
-  const pieDeFoto = document.createElement("figcaption");
-  pieDeFoto.textContent = producto.nombre;
+  productos.forEach(function (producto) {
+    const articulo = document.createElement("article");
+    articulo.className = "tarjeta-mueble";
 
-  figura.appendChild(imagen);
-  figura.appendChild(pieDeFoto);
+    const figura = document.createElement("figure");
 
-  const titulo = document.createElement("h3");
-  titulo.textContent = producto.nombre;
+    const imagen = document.createElement("img");
+    imagen.src = producto.imagen;
+    imagen.alt = producto.nombre;
+    imagen.width = 400;
+    imagen.height = 400;
 
-  const descripcion = document.createElement("p");
-  descripcion.textContent = producto.descripcion;
+    const pieDeFoto = document.createElement("figcaption");
+    pieDeFoto.textContent = producto.nombre;
 
-  articulo.appendChild(figura);
-  articulo.appendChild(titulo);
-  articulo.appendChild(descripcion);
+    figura.appendChild(imagen);
+    figura.appendChild(pieDeFoto);
 
-  contenedorProductos.appendChild(articulo);
-});
+    const titulo = document.createElement("h3");
+    titulo.textContent = producto.nombre;
+
+    const descripcion = document.createElement("p");
+    descripcion.textContent = producto.descripcion;
+
+    articulo.appendChild(figura);
+    articulo.appendChild(titulo);
+    articulo.appendChild(descripcion);
+
+    contenedorProductos.appendChild(articulo);
+  });
+}
+
+cargarProductos();
