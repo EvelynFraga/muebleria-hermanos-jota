@@ -225,6 +225,39 @@ function mostrarProductoNoEncontrado(contenedor) {
   contenedor.replaceChildren(titulo, mensaje);
 }
 
+function formatearNombreDetalle(nombreDetalle) {
+  const nombresEspeciales = {
+    cargaMaxima: "Carga máxima",
+    caracteristicas: "Características",
+    rotacion: "Rotación",
+    garantia: "Garantía",
+    modulares: "Modulares",
+    apilables: "Apilables",
+    incluye: "Incluye",
+    extension: "Extensión",
+    almacenamiento: "Almacenamiento",
+    cables: "Cables",
+    regulacion: "Regulación",
+    certificacion: "Certificación",
+    sostenibilidad: "Sostenibilidad",
+    tapizado: "Tapizado",
+    confort: "Confort",
+    estructura: "Estructura",
+    relleno: "Relleno",
+    capacidad: "Capacidad",
+    medidas: "Medidas",
+    materiales: "Materiales",
+    acabado: "Acabado",
+    peso: "Peso",
+  };
+
+  if (nombresEspeciales[nombreDetalle]) {
+    return nombresEspeciales[nombreDetalle];
+  }
+
+  return nombreDetalle.charAt(0).toUpperCase() + nombreDetalle.slice(1);
+}
+
 function mostrarDetalleProducto(contenedor) {
   const idProducto = Number(
     new URLSearchParams(window.location.search).get("id")
@@ -242,18 +275,27 @@ function mostrarDetalleProducto(contenedor) {
   const nombre = document.querySelector("#nombre-producto");
   const imagen = document.querySelector("#imagen-producto");
   const descripcion = document.querySelector("#descripcion-producto");
-  const medidas = document.querySelector("#medidas-producto");
-  const materiales = document.querySelector("#materiales-producto");
-  const acabado = document.querySelector("#acabado-producto");
+  const detallesProducto = document.querySelector("#detalles-producto");
   const precio = document.querySelector("#precio-producto");
 
   nombre.textContent = producto.nombre;
   imagen.src = producto.imagen;
   imagen.alt = producto.nombre;
   descripcion.textContent = producto.descripcion;
-  medidas.textContent = producto.detalles.medidas || "";
-  materiales.textContent = producto.detalles.materiales || "";
-  acabado.textContent = producto.detalles.acabado || "";
+
+  detallesProducto.replaceChildren();
+
+  Object.entries(producto.detalles).forEach(function ([nombreDetalle, valorDetalle]) {
+    const dt = document.createElement("dt");
+    const dd = document.createElement("dd");
+
+    dt.textContent = formatearNombreDetalle(nombreDetalle);
+    dd.textContent = valorDetalle;
+
+    detallesProducto.appendChild(dt);
+    detallesProducto.appendChild(dd);
+  });
+
   precio.textContent = "$ " + producto.precio.toLocaleString("es-AR");
 
   const botonAnadir = document.querySelector("#boton-anadir-carrito");
