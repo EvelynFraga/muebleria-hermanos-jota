@@ -205,7 +205,11 @@ function actualizarContadorCarrito() {
 
 function agregarProductoAlCarrito(producto) {
   const carrito = obtenerCarrito();
-  carrito.push({ id: producto.id });
+
+  carrito.push({
+    id: producto.id,
+  });
+
   guardarCarrito(carrito);
   actualizarContadorCarrito();
 }
@@ -222,7 +226,10 @@ function mostrarProductoNoEncontrado(contenedor) {
 }
 
 function mostrarDetalleProducto(contenedor) {
-  const idProducto = Number(new URLSearchParams(window.location.search).get("id"));
+  const idProducto = Number(
+    new URLSearchParams(window.location.search).get("id")
+  );
+
   const producto = productos.find(function (item) {
     return item.id === idProducto;
   });
@@ -283,41 +290,95 @@ async function cargarProductos(productosAMostrar) {
     imagen.width = 400;
     imagen.height = 400;
 
-    const pieDeFoto = document.createElement("figcaption");
-    pieDeFoto.textContent = producto.nombre;
-
     figura.appendChild(imagen);
-    figura.appendChild(pieDeFoto);
 
     const titulo = document.createElement("h3");
     titulo.textContent = producto.nombre;
 
     const descripcion = document.createElement("p");
-    descripcion.textContent = producto.descripcion;
+    descripcion.textContent =
+      producto.descripcion.slice(0, 90) + "...";
+
+    const precio = document.createElement("p");
+    precio.textContent =
+      "$ " + producto.precio.toLocaleString("es-AR");
+    precio.className = "precio-tarjeta";
 
     const enlaceDetalle = document.createElement("a");
     enlaceDetalle.href = "producto.html?id=" + producto.id;
     enlaceDetalle.textContent = "Ver detalle";
+    enlaceDetalle.className = "boton-detalle";
 
     articulo.appendChild(figura);
     articulo.appendChild(titulo);
     articulo.appendChild(descripcion);
+    articulo.appendChild(precio);
     articulo.appendChild(enlaceDetalle);
 
     contenedorProductos.appendChild(articulo);
   });
 }
-    
+
+/* Carrusel del hero */
+
+function iniciarCarruselHero() {
+  const imagenHero = document.querySelector("#imagen-hero");
+  const nombreHero = document.querySelector("#nombre-hero");
+
+  if (!imagenHero || !nombreHero) {
+    return;
+  }
+
+  const productosHero = productos.slice(0, 4);
+  let indiceActual = 0;
+
+  function mostrarProductoHero() {
+    const producto = productosHero[indiceActual];
+
+    imagenHero.style.opacity = "0";
+    nombreHero.style.opacity = "0";
+
+    setTimeout(function () {
+      imagenHero.src = producto.imagen;
+      imagenHero.alt = producto.nombre;
+      nombreHero.textContent = producto.nombre;
+
+      imagenHero.style.opacity = "1";
+      nombreHero.style.opacity = "1";
+    }, 500);
+  }
+
+  mostrarProductoHero();
+
+  setInterval(function () {
+    indiceActual = (indiceActual + 1) % productosHero.length;
+    mostrarProductoHero();
+  }, 4000);
+}
+
+/* Contador del carrito */
 
 actualizarContadorCarrito();
 
+/* Página de detalle y catálogo */
+
 const detalleProducto = document.querySelector("#detalle-producto");
+const catalogoProductos = document.querySelector("#catalogo-productos");
+const contenedorProductos = document.querySelector("#contenedor-productos");
 
 if (detalleProducto) {
   mostrarDetalleProducto(detalleProducto);
-} else {
+} else if (catalogoProductos) {
   cargarProductos(productos);
+} else if (contenedorProductos) {
+  cargarProductos(productos.slice(0, 4));
 }
+
+/* Iniciar carrusel */
+
+iniciarCarruselHero();
+
+/* Formulario de contacto */
 
 const formularioContacto = document.querySelector("#formulario-contacto");
 const mensajeExito = document.querySelector("#mensaje-exito");
@@ -342,6 +403,8 @@ if (formularioContacto) {
     formularioContacto.reset();
   });
 }
+
+/* Búsqueda de productos */
 
 const formularioBusqueda = document.querySelector("#formulario-busqueda");
 const campoBusqueda = document.querySelector("#busqueda-productos");

@@ -35,29 +35,58 @@
     </header>
 
     <main>
-      <section aria-labelledby="titulo-contacto">
-        <h1 id="titulo-contacto">Contacto</h1>
+      <section class="seccion-contacto" aria-labelledby="titulo-contacto">
+        <div class="contacto-contenido">
+          <h1 id="titulo-contacto">Contacto</h1>
 
-        <form id="formulario-contacto">
-          <div>
-            <label for="nombre">Nombre</label>
-            <input type="text" id="nombre" name="nombre">
-          </div>
+          <p class="contacto-introduccion">
+            ¿Tenés alguna consulta, sugerencia o querés más información
+            sobre nuestros productos? Escribinos, estamos para ayudarte.
+          </p>
 
-          <div>
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email">
-          </div>
+          <form id="formulario-contacto">
+            <div class="campo-contacto">
+              <label for="nombre">Nombre</label>
+              <input
+                type="text"
+                id="nombre"
+                name="nombre"
+                placeholder="Tu nombre"
+              >
+            </div>
 
-          <div>
-            <label for="mensaje">Mensaje</label>
-            <textarea id="mensaje" name="mensaje" rows="6"></textarea>
-          </div>
+            <div class="campo-contacto">
+              <label for="email">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="tu@email.com"
+              >
+            </div>
 
-          <button type="submit">Enviar mensaje</button>
-        </form>
+            <div class="campo-contacto">
+              <label for="mensaje">Mensaje</label>
+              <textarea
+                id="mensaje"
+                name="mensaje"
+                rows="6"
+                placeholder="Escribí tu mensaje aquí..."
+              ></textarea>
+            </div>
 
-        <div id="mensaje-exito" aria-live="polite"></div>
+            <button type="submit">Enviar mensaje</button>
+          </form>
+
+          <div id="mensaje-exito" aria-live="polite"></div>
+        </div>
+
+        <div class="contacto-imagen">
+          <img
+            src="imagenes/Mesa Comedor Pampa.png"
+            alt="Mesa Comedor Pampa de Mueblería Hermanos Jota"
+          >
+        </div>
       </section>
     </main>
 
