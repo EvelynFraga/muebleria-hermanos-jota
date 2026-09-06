@@ -320,3 +320,27 @@ if (detalleProducto) {
 } else {
   cargarProductos();
 }
+
+const formularioContacto = document.querySelector("#formulario-contacto");
+const mensajeExito = document.querySelector("#mensaje-exito");
+
+if (formularioContacto) {
+  formularioContacto.addEventListener("submit", function (evento) {
+    evento.preventDefault();
+
+    const nombre = document.querySelector("#nombre").value.trim();
+    const email = document.querySelector("#email").value.trim();
+    const mensaje = document.querySelector("#mensaje").value.trim();
+
+    if (!nombre || !email || !mensaje) {
+      mensajeExito.textContent =
+        "Por favor, completá todos los campos del formulario.";
+      return;
+    }
+
+    mensajeExito.textContent =
+      "¡Gracias por contactarnos! Tu mensaje fue enviado correctamente.";
+
+    formularioContacto.reset();
+  });
+}
