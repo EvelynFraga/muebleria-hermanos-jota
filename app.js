@@ -258,7 +258,7 @@ function mostrarDetalleProducto(contenedor) {
   }
 }
 
-async function cargarProductos() {
+async function cargarProductos(productosAMostrar) {
   await esperar(1000);
 
   const contenedorProductos =
@@ -269,10 +269,7 @@ async function cargarProductos() {
     return;
   }
 
-  const productosAMostrar =
-    contenedorProductos.id === "contenedor-productos"
-      ? productos.slice(0, 4)
-      : productos;
+  contenedorProductos.replaceChildren();
 
   productosAMostrar.forEach(function (producto) {
     const articulo = document.createElement("article");
@@ -310,6 +307,7 @@ async function cargarProductos() {
     contenedorProductos.appendChild(articulo);
   });
 }
+    
 
 actualizarContadorCarrito();
 
@@ -318,7 +316,7 @@ const detalleProducto = document.querySelector("#detalle-producto");
 if (detalleProducto) {
   mostrarDetalleProducto(detalleProducto);
 } else {
-  cargarProductos();
+  cargarProductos(productos);
 }
 
 const formularioContacto = document.querySelector("#formulario-contacto");
@@ -342,5 +340,20 @@ if (formularioContacto) {
       "¡Gracias por contactarnos! Tu mensaje fue enviado correctamente.";
 
     formularioContacto.reset();
+  });
+}
+
+const formularioBusqueda = document.querySelector("#formulario-busqueda");
+const campoBusqueda = document.querySelector("#busqueda-productos");
+
+if (formularioBusqueda && campoBusqueda) {
+  campoBusqueda.addEventListener("input", function () {
+    const textoBuscado = campoBusqueda.value.trim().toLowerCase();
+
+    const productosFiltrados = productos.filter(function (producto) {
+      return producto.nombre.toLowerCase().includes(textoBuscado);
+    });
+
+    cargarProductos(productosFiltrados);
   });
 }
