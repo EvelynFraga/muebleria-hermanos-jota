@@ -172,6 +172,92 @@ function esperar(ms) {
   });
 }
 
+const CLAVE_CARRITO = "carrito";
+
+function obtenerCarrito() {
+  const guardado = localStorage.getItem(CLAVE_CARRITO);
+
+  if (!guardado) {
+    return [];
+  }
+
+  try {
+    const carrito = JSON.parse(guardado);
+    return Array.isArray(carrito) ? carrito : [];
+  } catch (error) {
+    return [];
+  }
+}
+
+function guardarCarrito(carrito) {
+  localStorage.setItem(CLAVE_CARRITO, JSON.stringify(carrito));
+}
+
+function actualizarContadorCarrito() {
+  const contador = document.querySelector("#contador-carrito");
+
+  if (!contador) {
+    return;
+  }
+
+  contador.textContent = String(obtenerCarrito().length);
+}
+
+function agregarProductoAlCarrito(producto) {
+  const carrito = obtenerCarrito();
+  carrito.push({ id: producto.id });
+  guardarCarrito(carrito);
+  actualizarContadorCarrito();
+}
+
+function mostrarProductoNoEncontrado(contenedor) {
+  const titulo = document.createElement("h1");
+  titulo.textContent = "Producto no encontrado";
+
+  const mensaje = document.createElement("p");
+  mensaje.textContent =
+    "No encontramos un producto con ese identificador. Volvé al catálogo para elegir otra pieza.";
+
+  contenedor.replaceChildren(titulo, mensaje);
+}
+
+function mostrarDetalleProducto(contenedor) {
+  const idProducto = Number(new URLSearchParams(window.location.search).get("id"));
+  const producto = productos.find(function (item) {
+    return item.id === idProducto;
+  });
+
+  if (!producto) {
+    mostrarProductoNoEncontrado(contenedor);
+    return;
+  }
+
+  const nombre = document.querySelector("#nombre-producto");
+  const imagen = document.querySelector("#imagen-producto");
+  const descripcion = document.querySelector("#descripcion-producto");
+  const medidas = document.querySelector("#medidas-producto");
+  const materiales = document.querySelector("#materiales-producto");
+  const acabado = document.querySelector("#acabado-producto");
+  const precio = document.querySelector("#precio-producto");
+
+  nombre.textContent = producto.nombre;
+  imagen.src = producto.imagen;
+  imagen.alt = producto.nombre;
+  descripcion.textContent = producto.descripcion;
+  medidas.textContent = producto.detalles.medidas || "";
+  materiales.textContent = producto.detalles.materiales || "";
+  acabado.textContent = producto.detalles.acabado || "";
+  precio.textContent = "$ " + producto.precio.toLocaleString("es-AR");
+
+  const botonAnadir = document.querySelector("#boton-anadir-carrito");
+
+  if (botonAnadir) {
+    botonAnadir.addEventListener("click", function () {
+      agregarProductoAlCarrito(producto);
+    });
+  }
+}
+
 async function cargarProductos() {
   await esperar(1000);
 
@@ -212,12 +298,25 @@ async function cargarProductos() {
     const descripcion = document.createElement("p");
     descripcion.textContent = producto.descripcion;
 
+    const enlaceDetalle = document.createElement("a");
+    enlaceDetalle.href = "producto.html?id=" + producto.id;
+    enlaceDetalle.textContent = "Ver detalle";
+
     articulo.appendChild(figura);
     articulo.appendChild(titulo);
     articulo.appendChild(descripcion);
+    articulo.appendChild(enlaceDetalle);
 
     contenedorProductos.appendChild(articulo);
   });
 }
 
-cargarProductos();
+actualizarContadorCarrito();
+
+const detalleProducto = document.querySelector("#detalle-producto");
+
+if (detalleProducto) {
+  mostrarDetalleProducto(detalleProducto);
+} else {
+  cargarProductos();
+}

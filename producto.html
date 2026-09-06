@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Detalle de producto de Mueblería Hermanos Jota.">
+    <title>Producto | Mueblería Hermanos Jota</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+
+  <body>
+    <header>
+      <a href="index.html">
+        <img
+          src="imagenes/logo.svg"
+          alt="Mueblería Hermanos Jota"
+          width="180"
+          height="180"
+        >
+      </a>
+
+      <nav aria-label="Navegación principal">
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="productos.html">Productos</a></li>
+          <li>
+            <a href="#">Carrito (<span id="contador-carrito">0</span>)</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <article id="detalle-producto">
+        <h1 id="nombre-producto"></h1>
+
+        <figure>
+          <img id="imagen-producto" alt="" width="400" height="400">
+        </figure>
+
+        <p id="descripcion-producto"></p>
+
+        <section aria-labelledby="titulo-fabricacion">
+          <h2 id="titulo-fabricacion">Detalles de fabricación</h2>
+          <dl>
+            <dt>Medidas</dt>
+            <dd id="medidas-producto"></dd>
+            <dt>Materiales</dt>
+            <dd id="materiales-producto"></dd>
+            <dt>Acabado</dt>
+            <dd id="acabado-producto"></dd>
+          </dl>
+        </section>
+
+        <p>
+          <span>Precio</span>
+          <span id="precio-producto"></span>
+        </p>
+
+        <button type="button" id="boton-anadir-carrito">Añadir al Carrito</button>
+      </article>
+    </main>
+
+    <footer>
+      <p><strong>Mueblería Hermanos Jota</strong></p>
+      <p>
+        <small>&copy; 2026 Mueblería Hermanos Jota.</small>
+      </p>
+    </footer>
+    <script src="app.js"></script>
+  </body>
+</html>
